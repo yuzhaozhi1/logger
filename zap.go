@@ -2,6 +2,7 @@ package logger
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -10,9 +11,11 @@ import (
 )
 
 var level zapcore.Level
+var LogConfig *ZapConfig
 
 func Zap() (logger *zap.Logger) {
-	NewDefaultZapConfig()
+	LogConfig = NewDefaultZapConfig()
+	log.Println(LogConfig.Director)
 	if ok, _ := PathExists(LogConfig.Director); !ok { // 判断是否有Director文件夹
 		fmt.Printf("create %v directory\n", LogConfig.Director)
 		_ = os.Mkdir(LogConfig.Director, os.ModePerm)

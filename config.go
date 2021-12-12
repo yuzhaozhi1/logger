@@ -12,7 +12,6 @@ type ZapConfig struct {
 	LogInConsole  bool   `mapstructure:"log-in-console" json:"logInConsole" yaml:"log-in-console"`  // 输出控制台
 }
 
-var LogConfig *ZapConfig
 var Level string
 
 // NewDefaultZapConfig 返回一个默认的配置

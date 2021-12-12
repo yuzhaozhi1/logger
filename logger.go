@@ -25,7 +25,7 @@ func (l *Logs) writeMsg(ctx *gin.Context, msg string, payload ...interface{}) st
 }
 func (l *Logs) writefMsg(ctx *gin.Context, format string, a ...interface{}) string {
 	logID := GetLogID(ctx)
-	return "[" + logID + "]" + fmt.Sprintf(format, a)
+	return "[" + logID + "]" + fmt.Sprintf(format, a...)
 }
 
 // ---- error
@@ -37,7 +37,7 @@ func (l *Logs) Error(msg string, err error) {
 
 // Errorf  error format
 func (l *Logs) Errorf(format string, a ...interface{}) {
-	l.log.Error(fmt.Sprintf(format, a))
+	l.log.Error(fmt.Sprintf(format, a...))
 }
 
 // CtxError context error
@@ -48,7 +48,7 @@ func (l *Logs) CtxError(ctx *gin.Context, msg string, err error, payload ...inte
 
 // CtxErrorf context error format
 func (l *Logs) CtxErrorf(ctx *gin.Context, format string, a ...interface{}) {
-	l.log.Error(l.writefMsg(ctx, format, a))
+	l.log.Error(l.writefMsg(ctx, format, a...))
 }
 
 // ---- info
@@ -60,7 +60,7 @@ func (l *Logs) Info(msg string, data interface{}) {
 
 // Infof  info format
 func (l *Logs) Infof(format string, a ...interface{}) {
-	l.log.Info(fmt.Sprintf(format, a))
+	l.log.Info(fmt.Sprintf(format, a...))
 }
 
 // CtxInfo context info
@@ -71,7 +71,7 @@ func (l *Logs) CtxInfo(ctx *gin.Context, msg string, data interface{}, payload .
 
 // CtxInfof context info format
 func (l *Logs) CtxInfof(ctx *gin.Context, format string, a ...interface{}) {
-	l.log.Info(l.writefMsg(ctx, format, a))
+	l.log.Info(l.writefMsg(ctx, format, a...))
 }
 
 // ---- Warn
@@ -83,7 +83,7 @@ func (l *Logs) Warn(msg string, data interface{}) {
 
 // Warnf info format
 func (l *Logs) Warnf(format string, a ...interface{}) {
-	l.log.Warn(fmt.Sprintf(format, a))
+	l.log.Warn(fmt.Sprintf(format, a...))
 }
 
 // CtxWarn context info
@@ -93,5 +93,5 @@ func (l *Logs) CtxWarn(ctx *gin.Context, msg string, data interface{}, payload .
 
 // CtxWarnf context info format
 func (l *Logs) CtxWarnf(ctx *gin.Context, format string, a ...interface{}) {
-	l.log.Info(l.writefMsg(ctx, format, a))
+	l.log.Info(l.writefMsg(ctx, format, a...))
 }
